@@ -1,0 +1,109 @@
+@import "tailwindcss";
+
+@source '../../vendor/laravel/framework/src/Illuminate/Pagination/resources/views/*.blade.php';
+@source '../../storage/framework/views/*.php';
+@source '../**/*.blade.php';
+@source '../**/*.js';
+
+@theme {
+    --font-sans: "Instrument Sans", ui-sans-serif, system-ui, sans-serif,
+        "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
+        "Noto Color Emoji";
+}
+@layer components {
+    /* =============================
+     SERVICE CARD (ENTERPRISE)
+     ============================= */
+    .service-card {
+        @apply relative rounded-2xl bg-white
+           p-8 text-center
+           border border-slate-200
+           shadow-sm
+           transition-all duration-300
+           flex flex-col items-center
+           h-full;
+    }
+
+    .service-card:hover {
+        @apply -translate-y-1 shadow-lg;
+    }
+
+    /* Border highlight (clean blue) */
+    .service-card::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        padding: 1px;
+        border-radius: 1rem;
+
+        /* ✅ ganti dari gradient ramai -> biru clean */
+        background: linear-gradient(
+            135deg,
+            rgba(59, 130, 246, 0.65),
+            rgba(59, 130, 246, 0.15)
+        );
+
+        -webkit-mask: linear-gradient(#000 0 0) content-box,
+            linear-gradient(#000 0 0);
+        -webkit-mask-composite: xor;
+        mask-composite: exclude;
+
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+    }
+
+    .service-card:hover::before {
+        opacity: 1;
+    }
+
+    /* =============================
+     ICON CONTAINER (PNG ONLY) - WHITE CLEAN
+     ============================= */
+    .icon-wrap {
+        @apply relative flex items-center justify-center
+           w-24 h-24 rounded-2xl mb-6
+           bg-white border border-slate-200
+           transition-all duration-300;
+    }
+
+    /* subtle blue glow on hover (enterprise) */
+    .icon-wrap::after {
+        content: "";
+        position: absolute;
+        inset: -14px;
+        background: radial-gradient(
+            circle at 50% 30%,
+            rgba(59, 130, 246, 0.18),
+            transparent 60%
+        );
+        opacity: 0;
+        transition: opacity 0.3s ease;
+        pointer-events: none;
+    }
+
+    .service-card:hover .icon-wrap::after {
+        opacity: 1;
+    }
+
+    /* smooth lift, no rotate (lebih corporate) */
+    .service-card:hover .icon-wrap {
+        transform: translateY(-2px) scale(1.03);
+        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12),
+            0 10px 25px rgba(0, 0, 0, 0.1);
+    }
+
+    /* PNG ICON */
+    .service-icon {
+        @apply w-14 h-14 object-contain;
+        filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.12));
+    }
+
+    .service-title {
+        @apply text-lg font-extrabold;
+    }
+
+    .service-desc {
+        @apply mt-2 text-sm text-slate-500 leading-relaxed;
+    }
+}
