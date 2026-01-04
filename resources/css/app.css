@@ -10,10 +10,99 @@
         "Apple Color Emoji", "Segoe UI Emoji", "Segoe UI Symbol",
         "Noto Color Emoji";
 }
+
 @layer components {
-    /* =============================
+    /* =================================================
+     CONTAINER
+     ================================================= */
+    .container-max {
+        @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+    }
+
+    /* =================================================
+     BUTTONS (GREEN – ENTERPRISE) | NO @apply btn
+     ================================================= */
+
+    /* Primary CTA (Green) */
+    .btn-primary {
+        @apply inline-flex items-center justify-center gap-2
+            rounded-full px-7 py-3
+            text-sm font-extrabold
+            bg-emerald-600 text-white
+            shadow-sm shadow-emerald-600/20
+            transition-all duration-200
+            select-none outline-none
+            hover:bg-emerald-700 hover:shadow-md hover:shadow-emerald-600/30
+            active:translate-y-[1px] active:shadow-sm
+            focus-visible:ring-4 focus-visible:ring-emerald-200
+            disabled:pointer-events-none disabled:opacity-60;
+        position: relative;
+        overflow: hidden;
+    }
+
+    /* Subtle shine */
+    .btn-primary::after {
+        content: "";
+        position: absolute;
+        top: -60%;
+        left: -40%;
+        width: 60%;
+        height: 220%;
+        background: linear-gradient(
+            120deg,
+            transparent,
+            rgba(255, 255, 255, 0.22),
+            transparent
+        );
+        transform: rotate(18deg);
+        opacity: 0;
+        transition: opacity 200ms ease, transform 600ms ease;
+        pointer-events: none;
+    }
+    .btn-primary:hover::after {
+        opacity: 1;
+        transform: translateX(160%) rotate(18deg);
+    }
+
+    /* Secondary */
+    .btn-secondary {
+        @apply inline-flex items-center justify-center gap-2
+            rounded-full px-7 py-3
+            text-sm font-extrabold
+            bg-white text-slate-900
+            border border-slate-200
+            shadow-sm
+            transition-all duration-200
+            select-none outline-none
+            hover:bg-slate-50 hover:border-slate-300 hover:shadow-md
+            active:translate-y-[1px] active:shadow-sm
+            focus-visible:ring-4 focus-visible:ring-emerald-200
+            disabled:pointer-events-none disabled:opacity-60;
+    }
+
+    /* Ghost / outline */
+    .btn-ghost {
+        @apply inline-flex items-center justify-center gap-2
+            rounded-full px-7 py-3
+            text-sm font-extrabold
+            bg-transparent text-slate-900
+            border border-slate-300
+            transition-all duration-200
+            select-none outline-none
+            hover:bg-slate-50
+            active:translate-y-[1px]
+            focus-visible:ring-4 focus-visible:ring-emerald-200
+            disabled:pointer-events-none disabled:opacity-60;
+    }
+
+    /* Small size helper (for mobile navbar) */
+    .btn-sm {
+        @apply px-5 py-2 text-xs;
+    }
+
+    /* =================================================
      SERVICE CARD (ENTERPRISE)
-     ============================= */
+     ================================================= */
     .service-card {
         @apply relative rounded-2xl bg-white
            p-8 text-center
@@ -22,13 +111,14 @@
            transition-all duration-300
            flex flex-col items-center
            h-full;
+        will-change: transform;
     }
 
     .service-card:hover {
-        @apply -translate-y-1 shadow-lg;
+        @apply -translate-y-1 shadow-lg shadow-slate-900/10;
     }
 
-    /* Border highlight (clean blue) */
+    /* Clean green highlight border */
     .service-card::before {
         content: "";
         position: absolute;
@@ -36,11 +126,10 @@
         padding: 1px;
         border-radius: 1rem;
 
-        /* ✅ ganti dari gradient ramai -> biru clean */
         background: linear-gradient(
             135deg,
-            rgba(59, 130, 246, 0.65),
-            rgba(59, 130, 246, 0.15)
+            rgba(16, 185, 129, 0.65),
+            rgba(16, 185, 129, 0.15)
         );
 
         -webkit-mask: linear-gradient(#000 0 0) content-box,
@@ -57,9 +146,13 @@
         opacity: 1;
     }
 
-    /* =============================
-     ICON CONTAINER (PNG ONLY) - WHITE CLEAN
-     ============================= */
+    .service-card:focus-within {
+        @apply ring-4 ring-emerald-100;
+    }
+
+    /* =================================================
+     ICON CONTAINER (PNG ONLY)
+     ================================================= */
     .icon-wrap {
         @apply relative flex items-center justify-center
            w-24 h-24 rounded-2xl mb-6
@@ -67,14 +160,13 @@
            transition-all duration-300;
     }
 
-    /* subtle blue glow on hover (enterprise) */
     .icon-wrap::after {
         content: "";
         position: absolute;
         inset: -14px;
         background: radial-gradient(
             circle at 50% 30%,
-            rgba(59, 130, 246, 0.18),
+            rgba(16, 185, 129, 0.2),
             transparent 60%
         );
         opacity: 0;
@@ -86,24 +178,39 @@
         opacity: 1;
     }
 
-    /* smooth lift, no rotate (lebih corporate) */
     .service-card:hover .icon-wrap {
         transform: translateY(-2px) scale(1.03);
-        box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.12),
+        box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.15),
             0 10px 25px rgba(0, 0, 0, 0.1);
     }
 
-    /* PNG ICON */
     .service-icon {
         @apply w-14 h-14 object-contain;
         filter: drop-shadow(0 4px 8px rgba(0, 0, 0, 0.12));
     }
 
     .service-title {
-        @apply text-lg font-extrabold;
+        @apply text-lg font-extrabold text-slate-900;
     }
 
     .service-desc {
         @apply mt-2 text-sm text-slate-500 leading-relaxed;
+    }
+
+    /* =================================================
+     BADGE + SECTION HELPERS
+     ================================================= */
+    .badge {
+        @apply inline-flex items-center rounded-full
+            bg-emerald-100 text-emerald-700
+            px-3 py-1 text-xs font-bold;
+    }
+
+    .section-title {
+        @apply text-3xl font-extrabold md:text-4xl text-slate-900;
+    }
+
+    .section-subtitle {
+        @apply mt-3 text-slate-500;
     }
 }
