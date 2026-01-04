@@ -599,7 +599,7 @@
 
             <div class="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
                 <a class="btn-primary w-full sm:w-auto"
-                    href="https://wa.me/6282243143115?text=Halo%20RinTech,%20saya%20ingin%20konsultasi%20website%2Faplikasi."
+                    href="https://wa.me/+62882008110510?text=Halo%20RinTech,%20saya%20ingin%20konsultasi%20website%2Faplikasi."
                     target="_blank" rel="noopener">
                     Konsultasi via WhatsApp
                 </a>
@@ -646,7 +646,7 @@
                     <h4 class="font-extrabold">Kontak</h4>
                     <ul class="mt-4 space-y-2 text-sm text-white/75">
                         <li>rintechdigital@gmail.com</li>
-                        <li>082 243 143 115</li>
+                        <li>+62 8820 0811 0510</li>
                         <li>Banyumeneng, Mranggen, Demak 59567</li>
                     </ul>
                 </div>
