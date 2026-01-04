@@ -645,7 +645,7 @@
                 <div>
                     <h4 class="font-extrabold">Kontak</h4>
                     <ul class="mt-4 space-y-2 text-sm text-white/75">
-                        <li>rintechdigital@gmail.com</li>
+                        <li>rintechdigitaltechnology@gmail.com</li>
                         <li>+62 8820 0811 0510</li>
                         <li>Banyumeneng, Mranggen, Demak 59567</li>
                     </ul>
